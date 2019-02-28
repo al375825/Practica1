@@ -17,7 +17,7 @@ public class Factura {
         return this.codigo;
     }
 
-    public Tarifa getTarifa(){
+    public Tarifa getTarifaFactura(){
         return this.tarifa;
     }
 
