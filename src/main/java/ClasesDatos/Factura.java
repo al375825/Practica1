@@ -1,3 +1,5 @@
+package ClasesDatos;
+
 public class Factura {
     private String codigo;
     private Tarifa tarifa;

@@ -1,3 +1,5 @@
+package ClasesDatos;
+
 public class Direccion {
     private int cp;
     private String provincia;

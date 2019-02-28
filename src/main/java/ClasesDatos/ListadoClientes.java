@@ -1,3 +1,5 @@
+package ClasesDatos;
+
 import java.util.HashMap;
 
 public class ListadoClientes {
