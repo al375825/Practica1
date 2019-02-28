@@ -1,4 +1,4 @@
-package ClasesDatos;
+package clasesDatos;
 
 public class Tarifa {
     int coste;

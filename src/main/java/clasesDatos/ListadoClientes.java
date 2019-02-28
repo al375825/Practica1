@@ -1,6 +1,7 @@
-package ClasesDatos;
+package clasesDatos;
 
 import java.util.HashMap;
+import java.util.Set;
 
 public class ListadoClientes {
     private HashMap<String, Cliente> lista;
@@ -21,7 +22,15 @@ public class ListadoClientes {
         return lista.get(nif);
     }
 
+    public HashMap<String, Cliente> getLista(){
+        return this.lista;
+    }
+
     public HashMap<String, Cliente> recuperarListado(){
+        Set<String> dnis= lista.keySet();
+        for(String cliente:dnis){
+            System.out.println(cliente);
+        }
         return lista;
     }
 

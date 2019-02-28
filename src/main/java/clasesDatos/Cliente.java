@@ -1,4 +1,4 @@
-package ClasesDatos;
+package clasesDatos;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -12,6 +12,8 @@ public class Cliente {
     protected Tarifa tarifa;
     protected LinkedList<Llamada> llamadas;
     protected HashMap<String, Factura> facturas;
+
+
 
     public Cliente( String nombre, String nif, Direccion direccion, String correo, Fecha fecha, Tarifa tarifa){
         this.nombre = nombre;
@@ -51,8 +53,12 @@ public class Cliente {
         this.tarifa = nuevatarifa;
     }
 
-    public LinkedList<Llamada> lsitadoLlamadas(){
+    public LinkedList<Llamada> listadoLlamadas(){
         return llamadas;
+    }
+
+    public void crearClientes(){
+
     }
 
     //metodo getfecha

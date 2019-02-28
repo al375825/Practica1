@@ -1,4 +1,4 @@
-package ClasesDatos;
+package clasesDatos;
 
 public class Empresa extends Cliente{
 
