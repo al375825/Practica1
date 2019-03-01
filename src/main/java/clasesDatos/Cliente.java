@@ -3,7 +3,7 @@ package clasesDatos;
 import java.util.HashMap;
 import java.util.LinkedList;
 
-public class Cliente {
+public abstract class Cliente {
     protected String nombre;
     protected String nif;
     protected Direccion direccion;
@@ -47,6 +47,7 @@ public class Cliente {
     public Tarifa getTarifa(){
         return this.tarifa;
     }
+
 
 
     public void cambioTarifa(Tarifa nuevatarifa){
