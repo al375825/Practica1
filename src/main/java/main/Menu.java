@@ -1,6 +1,9 @@
 package main;
 
+import clasesDatos.Cliente;
 import clasesDatos.ListadoClientes;
+import clasesDatos.Tarifa;
+
 import java.util.Scanner;
 
 public class Menu {
@@ -65,17 +68,27 @@ public class Menu {
     }
 
     public void seleccionarOpcionClientes(Byte opcion){
+        Scanner teclado = new Scanner(System.in);
         switch(opcion){
             case 1: //crearCliente();
                 break;
-            case 2: //borrarCliente();
+            case 2: System.out.println("Introduce el nif: ");
+                String nif= teclado.next();
+                Cliente cliente = new ListadoClientes().recuperarCliente(nif);
+                new ListadoClientes().borrar(cliente);
                 break;
-            case 3: //cambioTarifa();
+            case 3: System.out.println("Introduce el nif: ");
+                nif= teclado.next();
+                cliente = new ListadoClientes().recuperarCliente(nif);
+                System.out.println("Introduzca la nueva tarifa: ");
+                Double dato = teclado.nextDouble();
+                Tarifa tarifa = new Tarifa(dato);
+                cliente.cambioTarifa(tarifa);
                 break;
             case 4:
-                Scanner teclado = new Scanner(System.in);
-                String nif= teclado.next();
-                new ListadoClientes().recuperarCliente(nif);
+                System.out.println("Introduce el nif: ");
+                String dni= teclado.next();
+                new ListadoClientes().recuperarCliente(dni);
                 break;
             case 5: new ListadoClientes().recuperarListado();
                 break;
