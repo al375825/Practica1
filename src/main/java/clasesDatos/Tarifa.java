@@ -6,4 +6,8 @@ public class Tarifa {
     public Tarifa(double coste){
         this.coste = coste;
     }
+
+    public double getCoste(){
+        return this.coste;
+    }
 }

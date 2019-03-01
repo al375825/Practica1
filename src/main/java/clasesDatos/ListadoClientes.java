@@ -27,10 +27,6 @@ public class ListadoClientes {
     }
 
     public HashMap<String, Cliente> recuperarListado(){
-        Set<String> dnis= lista.keySet();
-        for(String cliente:dnis){
-            System.out.println(cliente);
-        }
         return lista;
     }
 

@@ -58,6 +58,14 @@ public abstract class Cliente {
         return llamadas;
     }
 
+    public String clienteToString(){
+        StringBuilder cadenaCliente=new StringBuilder();
+        cadenaCliente.append(nombre+"   "+nif+"   ");
+        cadenaCliente.append(direccion.getCp()+" "+direccion.getProvincia()+" "+direccion.getPoblacion()+"   ");
+        cadenaCliente.append(correo+"   "+ fechaAlta.formatoFecha()+"   ");
+        cadenaCliente.append(tarifa.getCoste());
+        return cadenaCliente.toString();
+    }
 
 
 }

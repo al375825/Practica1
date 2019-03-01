@@ -29,5 +29,15 @@ public class Llamada {
         return this.hora;
     }
 
+    public String llamadaToString(){
+        StringBuilder cadenaLlamada=new StringBuilder();
+        cadenaLlamada.append("Destino: "+destino+"   ");
+        cadenaLlamada.append(fecha.formatoFecha()+"   ");
+        cadenaLlamada.append("Duración: "+ duracion + "   ");
+        cadenaLlamada.append(hora);
+        return cadenaLlamada.toString();
+    }
+
+
     //metodo getFecha
 }
