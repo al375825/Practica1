@@ -1,9 +1,9 @@
 package clasesDatos;
 
 public class Tarifa {
-    int coste;
+    double coste;
 
-    public Tarifa(int coste){
+    public Tarifa(double coste){
         this.coste = coste;
     }
 }

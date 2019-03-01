@@ -58,9 +58,6 @@ public abstract class Cliente {
         return llamadas;
     }
 
-    public void crearClientes(){
 
-    }
 
-    //metodo getfecha
 }
