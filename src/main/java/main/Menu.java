@@ -66,11 +66,11 @@ public class Menu {
 
     public void seleccionarOpcionClientes(Byte opcion){
         switch(opcion){
-            case 1: crearCliente();
+            case 1: //crearCliente();
                 break;
-            case 2: borrarCliente();
+            case 2: //borrarCliente();
                 break;
-            case 3: cambioTarifa();
+            case 3: //cambioTarifa();
                 break;
             case 4:
                 Scanner teclado = new Scanner(System.in);
@@ -88,11 +88,11 @@ public class Menu {
 
     public void seleccionarOpcionFacturas(Byte opcion){
         switch(opcion){
-            case 1: emitirFactura();
+            case 1: //emitirFactura();
                 break;
-            case 2: recuperarFactura();
+            case 2: //recuperarFactura();
                 break;
-            case 3: mostrarFactura();
+            case 3: //mostrarFactura();
                 break;
             case 4: System.out.println("Adiós");
                 break;
@@ -103,9 +103,9 @@ public class Menu {
 
     public void seleccionarOpcionLlamadas(Byte opcion){
         switch(opcion){
-            case 1: crearLlamada();
+            case 1: //crearLlamada();
                 break;
-            case 2: listarLlamadas();
+            case 2: //listarLlamadas();
                 break;
             case 3: System.out.println("Adiós");
                 break;
