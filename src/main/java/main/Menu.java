@@ -79,13 +79,13 @@ public class Menu {
                 break;
             case 2: System.out.println("Introduce el nif: ");
                 String nif= teclado.next();
-                Cliente cliente = new ListadoClientes().recuperarCliente(nif);
+                Cliente cliente = listaClientes.recuperarCliente(nif);
                 new ListadoClientes().borrar(cliente);
                 System.out.println("Cliente eliminado");
                 break;
             case 3: System.out.println("Introduce el nif: ");
                 nif= teclado.next();
-                cliente = new ListadoClientes().recuperarCliente(nif);
+                cliente = listaClientes.recuperarCliente(nif);
                 System.out.println("Introduzca la nueva tarifa: ");
                 Double dato = teclado.nextDouble();
                 Tarifa tarifa = new Tarifa(dato);
@@ -155,9 +155,21 @@ public class Menu {
         switch(opcion){
             case 1: //emitirFactura();
                 break;
-            case 2: //recuperarFactura();
+            case 2: System.out.println("Introduce el nif: ");
+                String nif= teclado.next();
+                Cliente cliente = listaClientes.recuperarCliente(nif);
+                System.out.println("Introduce el código de la factura: ");
+                String codFact= teclado.next();
+                System.out.println(cliente.recuperarFactura(codFact).facturaToString());
                 break;
-            case 3: //mostrarFactura();
+            case 3: System.out.println("Introduce el nif: ");
+                nif= teclado.next();
+                cliente = listaClientes.recuperarCliente(nif);
+                HashMap<String,Factura> listaFacturas = cliente.getFacturas();
+                Set<String> codigosFacturas=listaFacturas.keySet();
+                for(String codfactura: codigosFacturas){
+                    System.out.println(listaFacturas.get(codfactura).facturaToString());
+                }
                 break;
             case 4: System.out.println("Adiós");
                 break;
@@ -169,11 +181,11 @@ public class Menu {
     public void seleccionarOpcionLlamadas(Byte opcion){
         Scanner teclado = new Scanner(System.in);
         switch(opcion){
-            case 1: //crearLlamada();
+            case 1: //crearLlamada
                 break;
             case 2: System.out.println("Introduce el nif: ");
                 String nif= teclado.next();
-                Cliente cliente = new ListadoClientes().recuperarCliente(nif);
+                Cliente cliente = listaClientes.recuperarCliente(nif);
                 for(Llamada llamada:cliente.listadoLlamadas()){
                     System.out.println(llamada.llamadaToString());
                 }

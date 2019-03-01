@@ -48,7 +48,9 @@ public abstract class Cliente {
         return this.tarifa;
     }
 
-
+    public HashMap<String, Factura> getFacturas(){
+        return facturas;
+    }
 
     public void cambioTarifa(Tarifa nuevatarifa){
         this.tarifa = nuevatarifa;
@@ -56,6 +58,10 @@ public abstract class Cliente {
 
     public LinkedList<Llamada> listadoLlamadas(){
         return llamadas;
+    }
+
+    public Factura recuperarFactura(String codigo){
+        return facturas.get(codigo);
     }
 
     public String clienteToString(){

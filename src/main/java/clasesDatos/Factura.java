@@ -35,5 +35,15 @@ public class Factura {
         return this.importe;
     }
 
+    public String facturaToString(){
+        StringBuilder cadenaFactura=new StringBuilder();
+        cadenaFactura.append("Codigo: "+codigo+"   ");
+        cadenaFactura.append(tarifa.getCoste()+"   ");
+        cadenaFactura.append(fecha.formatoFecha()+"   ");
+        cadenaFactura.append(periodo+"    ");
+        cadenaFactura.append("A pagar: "+importe);
+        return cadenaFactura.toString();
+    }
+
     //metodo getFecha
 }
