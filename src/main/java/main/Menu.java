@@ -100,6 +100,7 @@ public class Menu {
     }
 
     public void seleccionarOpcionFacturas(Byte opcion){
+        Scanner teclado = new Scanner(System.in);
         switch(opcion){
             case 1: //emitirFactura();
                 break;
@@ -115,10 +116,14 @@ public class Menu {
     }
 
     public void seleccionarOpcionLlamadas(Byte opcion){
+        Scanner teclado = new Scanner(System.in);
         switch(opcion){
             case 1: //crearLlamada();
                 break;
-            case 2: //listarLlamadas();
+            case 2: System.out.println("Introduce el nif: ");
+                String nif= teclado.next();
+                Cliente cliente = new ListadoClientes().recuperarCliente(nif);
+                cliente.listadoLlamadas();
                 break;
             case 3: System.out.println("Adiós");
                 break;
