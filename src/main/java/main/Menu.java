@@ -1,12 +1,13 @@
 package main;
 
-import clasesDatos.Cliente;
-import clasesDatos.ListadoClientes;
-import clasesDatos.Tarifa;
+import clasesDatos.*;
+
 
 import java.util.Scanner;
 
 public class Menu {
+    public ListadoClientes listaClientes = new ListadoClientes();
+
     public void mostrarMenu(){
         System.out.println("Seleccione un menú: ");
         System.out.println("1. Clientes ");
@@ -96,6 +97,45 @@ public class Menu {
                 break;
             default: System.out.println("Opción no válida, seleccione otra.");
                 break;
+        }
+    }
+
+    public void crearCliente() {
+        Scanner teclado = new Scanner(System.in);
+        System.out.println("    Introduce el nombre del cliente: ");
+        String nombre = teclado.next();
+        System.out.println("    Introduce el dni del cliente: ");
+        String nif = teclado.next();
+        System.out.println("    Introduce el CP del cliente: ");
+        int cp = teclado.nextInt();
+        System.out.println("    Introduce la provincia: ");
+        String provincia = teclado.next();
+        System.out.println("    Introduce la población: ");
+        String poblacion = teclado.next();
+        Direccion dirCliente = new Direccion(cp, provincia, poblacion);
+        System.out.println("    Introduce su correo: ");
+        String correo = teclado.next();
+        System.out.println("    Introduce el dia: ");
+        int dia = teclado.nextInt();
+        System.out.println("    Introduce el mes: ");
+        int mes = teclado.nextInt();
+        System.out.println("    Introduce el año: ");
+        int año = teclado.nextInt();
+        Fecha fechaAlta = new Fecha(dia, mes, año);
+        System.out.println("    Introduce la tarifa (€/min): ");
+        int precio = teclado.nextInt();
+        Tarifa tarifa = new Tarifa(precio);
+
+        System.out.println("    Tipo de cliente: 1) Empresa o 2) Particular ");
+        int opcion = teclado.nextInt();
+        if (opcion == 1) {
+            Empresa nuevoCliente = new Empresa(nombre, nif, dirCliente, correo, fechaAlta, tarifa);
+            listaClientes.añadir(nuevoCliente);
+        } else {
+            System.out.println("    Introduce los apellidos del cliente: ");
+            String apellidos = teclado.next();
+            Particular nuevoCliente = new Particular(apellidos, nombre, nif, dirCliente, correo, fechaAlta, tarifa);
+            listaClientes.añadir(nuevoCliente);
         }
     }
 
