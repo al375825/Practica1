@@ -182,6 +182,7 @@ public class Menu {
         Scanner teclado = new Scanner(System.in);
         switch(opcion){
             case 1: //crearLlamada
+                System.out.println("Introduce el destino: ");
                 break;
             case 2: System.out.println("Introduce el nif: ");
                 String nif= teclado.next();
