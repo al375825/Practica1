@@ -3,6 +3,7 @@ package main;
 import clasesDatos.*;
 
 
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -132,7 +133,9 @@ public class Menu {
         int mes = teclado.nextInt();
         System.out.println("    Introduce el año: ");
         int año = teclado.nextInt();
-        Fecha fechaAlta = new Fecha(dia, mes, año);
+        System.out.println("    Introduce la hora: ");
+        int hora = teclado.nextInt();
+        Fecha fechaAlta = new Fecha(dia, mes, año, hora);
         System.out.println("    Introduce la tarifa (€/min): ");
         int precio = teclado.nextInt();
         Tarifa tarifa = new Tarifa(precio);
@@ -153,13 +156,20 @@ public class Menu {
     public void seleccionarOpcionFacturas(Byte opcion){
         Scanner teclado = new Scanner(System.in);
         switch(opcion){
-            case 1: //emitirFactura();
+            case 1: System.out.println("Introduzca el dni del cliente de quien desea ver la factura: ");
+                String nif= teclado.next();
+                HashMap<String,Cliente> clientes=listaClientes.getLista();
+                Cliente clienteFactura=clientes.get(nif);
+                System.out.println("Introduzca la factura que desee ver: ");
+                String codFact= teclado.next();
+                Factura facturaAMostrar= clienteFactura.getFacturas().get(codFact);
+                System.out.println(facturaAMostrar.facturaToString());
                 break;
             case 2: System.out.println("Introduce el nif: ");
-                String nif= teclado.next();
+                nif= teclado.next();
                 Cliente cliente = listaClientes.recuperarCliente(nif);
                 System.out.println("Introduce el código de la factura: ");
-                String codFact= teclado.next();
+                codFact= teclado.next();
                 System.out.println(cliente.recuperarFactura(codFact).facturaToString());
                 break;
             case 3: System.out.println("Introduce el nif: ");
@@ -182,7 +192,13 @@ public class Menu {
         Scanner teclado = new Scanner(System.in);
         switch(opcion){
             case 1: //crearLlamada
+                System.out.println("¿Quién realiza la llamada? ");
+                String cliente= teclado.next();
                 System.out.println("Introduce el destino: ");
+                String destino= teclado.next();
+                System.out.println("Introduce la duración (minutos): ");
+                Double duracion= teclado.nextDouble();
+                //LocalDateTime fechaLlamada=LocalDateTime.now();
                 break;
             case 2: System.out.println("Introduce el nif: ");
                 String nif= teclado.next();

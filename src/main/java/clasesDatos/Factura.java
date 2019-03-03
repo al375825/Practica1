@@ -35,15 +35,27 @@ public class Factura {
         return this.importe;
     }
 
+    public double calcularImporte(Cliente cliente, int mes){
+        int duracion=0;
+        for(Llamada llamada:cliente.listadoLlamadas()){
+            if(llamada.getFechaLlamada().getMes()==mes) {
+                duracion+=llamada.getDuracion();
+            }
+        }
+        this.importe=duracion*tarifa.coste;
+    }
+
     public String facturaToString(){
         StringBuilder cadenaFactura=new StringBuilder();
-        cadenaFactura.append("Codigo: "+codigo+"   ");
-        cadenaFactura.append(tarifa.getCoste()+"   ");
-        cadenaFactura.append(fecha.formatoFecha()+"   ");
-        cadenaFactura.append(periodo+"    ");
-        cadenaFactura.append("A pagar: "+importe);
+        cadenaFactura.append("Codigo: "+this.getCodigo()+"   ");
+        cadenaFactura.append(this.getTarifaFactura().getCoste()+"   ");
+        cadenaFactura.append(this.getFecha().formatoFecha()+"   ");
+        cadenaFactura.append(this.getPeriodo()+"    ");
+        cadenaFactura.append("A pagar: "+this.getImporte());
         return cadenaFactura.toString();
     }
 
-    //metodo getFecha
+    public Fecha getFechaFactura(){
+        return this.fecha;
+    }
 }
