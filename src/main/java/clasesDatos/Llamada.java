@@ -25,10 +25,6 @@ public class Llamada {
         return this.duracion;
     }
 
-    //public String getHora(){
-        //return this.hora;
-    //}
-
     public String llamadaToString(){
         StringBuilder cadenaLlamada=new StringBuilder();
         cadenaLlamada.append("Destino: "+destino+"   ");
@@ -37,7 +33,4 @@ public class Llamada {
         //cadenaLlamada.append(hora);
         return cadenaLlamada.toString();
     }
-
-
-    //metodo getFecha
 }
