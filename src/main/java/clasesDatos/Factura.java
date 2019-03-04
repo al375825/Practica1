@@ -1,18 +1,22 @@
 package clasesDatos;
 
+import java.time.LocalDateTime;
+
 public class Factura {
     private String codigo;
     private Tarifa tarifa;
-    private Fecha fecha;
-    private String periodo;
+    private LocalDateTime fecha;
+    private LocalDateTime inicioPeriodo;
+    private LocalDateTime finPeriodo;
     private double importe;
 
-    public Factura(String codigo, Tarifa tarifa, Fecha fecha, String periodo, int importe){
+    public Factura(String codigo, Cliente cliente){
         this.codigo = codigo;
-        this.fecha = fecha;
-        this.tarifa = tarifa;
-        this.periodo = periodo;
-        this.importe = importe;
+        this.fecha = LocalDateTime.now();
+        this.tarifa = cliente.getTarifa();
+        this.inicioPeriodo = LocalDateTime.now();
+        this.finPeriodo = inicioPeriodo.plusMonths(1);
+        importe = calcularImporte(cliente);
     }
 
     public String getCodigo(){
@@ -23,39 +27,42 @@ public class Factura {
         return this.tarifa;
     }
 
-    public Fecha getFecha(){
-        return this.fecha;
+
+    public LocalDateTime getInicioPeriodo(){
+        return this.inicioPeriodo;
     }
 
-    public String getPeriodo(){
-        return this.periodo;
+    public LocalDateTime getFinPeriodo(){
+        return this.finPeriodo;
     }
 
     public double getImporte(){
         return this.importe;
     }
 
-    public double calcularImporte(Cliente cliente, int mes){
+    public double calcularImporte(Cliente cliente){
         int duracion=0;
+        int mes = LocalDateTime.now().getMonthValue();
         for(Llamada llamada:cliente.listadoLlamadas()){
-            if(llamada.getFechaLlamada().getMes()==mes) {
+            if(llamada.getFechaLlamada().getMonthValue()==mes) {
                 duracion+=llamada.getDuracion();
             }
         }
-        this.importe=duracion*tarifa.coste;
+        importe=duracion*tarifa.coste;
+        return importe;
     }
 
     public String facturaToString(){
         StringBuilder cadenaFactura=new StringBuilder();
-        cadenaFactura.append("Codigo: "+this.getCodigo()+"   ");
-        cadenaFactura.append(this.getTarifaFactura().getCoste()+"   ");
-        cadenaFactura.append(this.getFecha().formatoFecha()+"   ");
-        cadenaFactura.append(this.getPeriodo()+"    ");
-        cadenaFactura.append("A pagar: "+this.getImporte());
+        cadenaFactura.append("Codigo: "+getCodigo()+"   ");
+        cadenaFactura.append(getTarifaFactura().getCoste()+"   ");
+        cadenaFactura.append(fecha.toString()+"   ");
+        cadenaFactura.append(getInicioPeriodo()+" - " + getFinPeriodo()+"   ");
+        cadenaFactura.append("A pagar: "+getImporte());
         return cadenaFactura.toString();
     }
 
-    public Fecha getFechaFactura(){
+    public LocalDateTime getFechaFactura(){
         return this.fecha;
     }
 }

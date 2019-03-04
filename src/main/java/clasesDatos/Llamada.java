@@ -1,13 +1,15 @@
 package clasesDatos;
 
+import java.time.LocalDateTime;
+
 public class Llamada {
     private String destino;
-    private Fecha fecha;
+    private LocalDateTime fecha;
     private double duracion;
 
-    public Llamada(String destino, Fecha fecha, int duracion){
+    public Llamada(String destino, double duracion){
         this.destino = destino;
-        this.fecha = fecha;
+        this.fecha = LocalDateTime.now();
         this.duracion = duracion;
     }
 
@@ -15,7 +17,7 @@ public class Llamada {
         return this.destino;
     }
 
-    public Fecha getFechaLlamada(){
+    public LocalDateTime getFechaLlamada(){
         return this.fecha;
     }
 
@@ -30,7 +32,7 @@ public class Llamada {
     public String llamadaToString(){
         StringBuilder cadenaLlamada=new StringBuilder();
         cadenaLlamada.append("Destino: "+destino+"   ");
-        cadenaLlamada.append(fecha.formatoFecha()+"   ");
+        cadenaLlamada.append(fecha.toString()+"   ");
         cadenaLlamada.append("Duración: "+ duracion + "   ");
         //cadenaLlamada.append(hora);
         return cadenaLlamada.toString();

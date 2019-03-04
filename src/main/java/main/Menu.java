@@ -127,15 +127,6 @@ public class Menu {
         Direccion dirCliente = new Direccion(cp, provincia, poblacion);
         System.out.println("    Introduce su correo: ");
         String correo = teclado.next();
-        System.out.println("    Introduce el dia: ");
-        int dia = teclado.nextInt();
-        System.out.println("    Introduce el mes: ");
-        int mes = teclado.nextInt();
-        System.out.println("    Introduce el año: ");
-        int año = teclado.nextInt();
-        System.out.println("    Introduce la hora: ");
-        int hora = teclado.nextInt();
-        Fecha fechaAlta = new Fecha(dia, mes, año, hora);
         System.out.println("    Introduce la tarifa (€/min): ");
         int precio = teclado.nextInt();
         Tarifa tarifa = new Tarifa(precio);
@@ -143,12 +134,12 @@ public class Menu {
         System.out.println("    Tipo de cliente: 1) Empresa o 2) Particular ");
         int opcion = teclado.nextInt();
         if (opcion == 1) {
-            Empresa nuevoCliente = new Empresa(nombre, nif, dirCliente, correo, fechaAlta, tarifa);
+            Empresa nuevoCliente = new Empresa(nombre, nif, dirCliente, correo, tarifa);
             listaClientes.añadir(nuevoCliente);
         } else {
             System.out.println("    Introduce los apellidos del cliente: ");
             String apellidos = teclado.next();
-            Particular nuevoCliente = new Particular(apellidos, nombre, nif, dirCliente, correo, fechaAlta, tarifa);
+            Particular nuevoCliente = new Particular(apellidos, nombre, nif, dirCliente, correo, tarifa);
             listaClientes.añadir(nuevoCliente);
         }
     }
@@ -156,14 +147,15 @@ public class Menu {
     public void seleccionarOpcionFacturas(Byte opcion){
         Scanner teclado = new Scanner(System.in);
         switch(opcion){
-            case 1: System.out.println("Introduzca el dni del cliente de quien desea ver la factura: ");
+            case 1: System.out.println("Introduzca el dni del cliente de la factura: ");
                 String nif= teclado.next();
                 HashMap<String,Cliente> clientes=listaClientes.getLista();
                 Cliente clienteFactura=clientes.get(nif);
-                System.out.println("Introduzca la factura que desee ver: ");
+                System.out.println("Introduzca el código de la factura a emitir: ");
                 String codFact= teclado.next();
-                Factura facturaAMostrar= clienteFactura.getFacturas().get(codFact);
-                System.out.println(facturaAMostrar.facturaToString());
+                Factura facturaAEmitir=new Factura(codFact,clienteFactura);
+                clienteFactura.getFacturas().put(codFact,facturaAEmitir);
+                System.out.println(facturaAEmitir.facturaToString());
                 break;
             case 2: System.out.println("Introduce el nif: ");
                 nif= teclado.next();
@@ -198,13 +190,15 @@ public class Menu {
                 String destino= teclado.next();
                 System.out.println("Introduce la duración (minutos): ");
                 Double duracion= teclado.nextDouble();
-                //LocalDateTime fechaLlamada=LocalDateTime.now();
+                Llamada llamada=new Llamada(destino,duracion);
+                listaClientes.recuperarCliente(cliente).listadoLlamadas().add(llamada);
+                System.out.println("Llamada realizada.");
                 break;
             case 2: System.out.println("Introduce el nif: ");
                 String nif= teclado.next();
-                Cliente cliente = listaClientes.recuperarCliente(nif);
-                for(Llamada llamada:cliente.listadoLlamadas()){
-                    System.out.println(llamada.llamadaToString());
+                Cliente clienteLlamadas = listaClientes.recuperarCliente(nif);
+                for(Llamada llamadasCliente:clienteLlamadas.listadoLlamadas()){
+                    System.out.println(llamadasCliente.llamadaToString());
                 }
                 break;
             case 3: System.out.println("Adiós");
