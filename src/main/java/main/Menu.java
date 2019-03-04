@@ -12,26 +12,27 @@ import java.util.Set;
 public class Menu {
     public ListadoClientes listaClientes = new ListadoClientes();
 
-    public static void main (String[] args){
+    public static void main (String[] args) throws ClienteException {
         new Menu().mostrarMenu();
     }
-    public void mostrarMenu(){
+    public void mostrarMenu() throws ClienteException {
         Scanner teclado = new Scanner(System.in);
         Byte opcion;
         do {
-            System.out.println("Seleccione un menú: ");
             System.out.println("1. Clientes ");
             System.out.println("2. Facturas ");
             System.out.println("3. Llamadas ");
             System.out.println("4. Salir");
+            System.out.print("Seleccione un menú: ");
             opcion = teclado.nextByte();
             seleccionarOpcion(opcion);
-            System.out.println("1) Continuar o 2) Salir");
+            System.out.println("Presione (1) para volver al menú");
             opcion = teclado.nextByte();
-        }while(opcion!=2);
+        }while(opcion==1);
+        System.out.println("Adiós");
     }
 
-    public void seleccionarOpcion(Byte opcion){
+    public void seleccionarOpcion(Byte opcion) throws ClienteException {
         switch(opcion){
             case 1: menuClientes();
                 break;
@@ -46,41 +47,41 @@ public class Menu {
         }
     }
 
-    public void menuClientes(){
-        System.out.println("Seleccione una opción: ");
+    public void menuClientes() throws ClienteException {
         System.out.println("1. Dar de alta (nuevo cliente)");
         System.out.println("2. Dar de baja (borrar cliente) ");
         System.out.println("3. Cambiar tarifa ");
         System.out.println("4. Recuperación de datos");
         System.out.println("5. Listado de clientes");
         System.out.println("6. Salir");
+        System.out.print("Seleccione una opción: ");
         Scanner teclado = new Scanner(System.in);
         Byte opcion=teclado.nextByte();
         seleccionarOpcionClientes(opcion);
     }
 
     public void menuFacturas(){
-        System.out.println("Seleccione una opción: ");
         System.out.println("1. Emitir una factura");
         System.out.println("2. Recuperar una factura ");
         System.out.println("3. Mostrar todas las facturas");
         System.out.println("4. Salir");
+        System.out.print("Seleccione una opción: ");
         Scanner teclado = new Scanner(System.in);
         Byte opcion=teclado.nextByte();
         seleccionarOpcionFacturas(opcion);
     }
 
     public void menuLlamadas(){
-        System.out.println("Seleccione una opción: ");
         System.out.println("1. Nueva llamada");
         System.out.println("2. Listar llamadas");
         System.out.println("3. Salir");
+        System.out.print("Seleccione una opción: ");
         Scanner teclado = new Scanner(System.in);
         Byte opcion=teclado.nextByte();
         seleccionarOpcionLlamadas(opcion);
     }
 
-    public void seleccionarOpcionClientes(Byte opcion){
+    public void seleccionarOpcionClientes(Byte opcion) throws ClienteException {
         Scanner teclado = new Scanner(System.in);
         switch(opcion){
             case 1: crearCliente();
@@ -120,12 +121,13 @@ public class Menu {
         }
     }
 
-    public void crearCliente() {
+    public void crearCliente() throws ClienteException{
         Scanner teclado = new Scanner(System.in);
         System.out.println("    Introduce el nombre del cliente: ");
         String nombre = teclado.next();
         System.out.println("    Introduce el dni del cliente: ");
         String nif = teclado.next();
+        if (listaClientes.getLista().containsKey(nif)) throw new ClienteException();
         System.out.println("    Introduce el CP del cliente: ");
         int cp = teclado.nextInt();
         System.out.println("    Introduce la provincia: ");
@@ -136,7 +138,7 @@ public class Menu {
         System.out.println("    Introduce su correo: ");
         String correo = teclado.next();
         System.out.println("    Introduce la tarifa (€/min): ");
-        int precio = teclado.nextInt();
+        double precio = teclado.nextDouble();
         Tarifa tarifa = new Tarifa(precio);
 
         System.out.println("    Tipo de cliente: 1) Empresa o 2) Particular ");
@@ -215,4 +217,6 @@ public class Menu {
                 break;
         }
     }
+
+
 }
