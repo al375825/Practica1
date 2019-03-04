@@ -41,14 +41,14 @@ public class Factura {
     }
 
     public double calcularImporte(Cliente cliente){
-        int duracion=0;
+        double duracion=0;
         int mes = LocalDateTime.now().getMonthValue();
         for(Llamada llamada:cliente.listadoLlamadas()){
             if(llamada.getFechaLlamada().getMonthValue()==mes) {
                 duracion+=llamada.getDuracion();
             }
         }
-        importe=duracion*tarifa.coste;
+        importe=duracion*tarifa.getCoste();
         return importe;
     }
 
