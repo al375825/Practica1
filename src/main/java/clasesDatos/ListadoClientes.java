@@ -15,7 +15,7 @@ public class ListadoClientes {
     }
 
     public void borrar(Cliente cliente){
-        lista.remove(cliente.nif);
+        lista.remove(cliente.getNif());
     }
 
     public Cliente recuperarCliente(String nif){

@@ -23,6 +23,8 @@ public abstract class Cliente {
         this.correo = correo;
         this.fechaAlta = LocalDateTime.now();
         this.tarifa = tarifa;
+        llamadas=new LinkedList<Llamada>();
+        facturas=new HashMap<String,Factura>();
     }
 
     public String getNombre(){

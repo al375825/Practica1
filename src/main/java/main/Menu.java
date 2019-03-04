@@ -12,15 +12,23 @@ import java.util.Set;
 public class Menu {
     public ListadoClientes listaClientes = new ListadoClientes();
 
+    public static void main (String[] args){
+        new Menu().mostrarMenu();
+    }
     public void mostrarMenu(){
-        System.out.println("Seleccione un menú: ");
-        System.out.println("1. Clientes ");
-        System.out.println("2. Facturas ");
-        System.out.println("3. Llamadas ");
-        System.out.println("4. Salir");
         Scanner teclado = new Scanner(System.in);
-        Byte opcion=teclado.nextByte();
-        seleccionarOpcion(opcion);
+        Byte opcion;
+        do {
+            System.out.println("Seleccione un menú: ");
+            System.out.println("1. Clientes ");
+            System.out.println("2. Facturas ");
+            System.out.println("3. Llamadas ");
+            System.out.println("4. Salir");
+            opcion = teclado.nextByte();
+            seleccionarOpcion(opcion);
+            System.out.println("1) Continuar o 2) Salir");
+            opcion = teclado.nextByte();
+        }while(opcion!=2);
     }
 
     public void seleccionarOpcion(Byte opcion){
@@ -81,7 +89,7 @@ public class Menu {
             case 2: System.out.println("Introduce el nif: ");
                 String nif= teclado.next();
                 Cliente cliente = listaClientes.recuperarCliente(nif);
-                new ListadoClientes().borrar(cliente);
+                listaClientes.borrar(cliente);
                 System.out.println("Cliente eliminado");
                 break;
             case 3: System.out.println("Introduce el nif: ");
