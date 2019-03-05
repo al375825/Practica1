@@ -1,8 +1,6 @@
 package main;
 
 import clasesDatos.*;
-
-
 import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.HashMap;
@@ -192,8 +190,7 @@ public class Menu {
     public void seleccionarOpcionLlamadas(Byte opcion){
         Scanner teclado = new Scanner(System.in);
         switch(opcion){
-            case 1: //crearLlamada
-                System.out.println("¿Quién realiza la llamada? ");
+            case 1: System.out.println("¿Quién realiza la llamada? ");
                 String cliente= teclado.next();
                 System.out.println("Introduce el destino: ");
                 String destino= teclado.next();
@@ -216,6 +213,4 @@ public class Menu {
                 break;
         }
     }
-
-
 }
