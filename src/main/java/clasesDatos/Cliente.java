@@ -43,7 +43,7 @@ public abstract class Cliente {
         return this.correo;
     }
 
-    public LocalDateTime getFechaAlta(){
+    public LocalDateTime getFecha(){
         return this.fechaAlta;
     }
 

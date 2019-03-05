@@ -121,13 +121,12 @@ public class Menu {
         }
     }
 
-    public void crearCliente() throws ClienteException{
+    public void crearCliente() throws ClienteException {
         Scanner teclado = new Scanner(System.in);
         System.out.println("    Introduce el nombre del cliente: ");
         String nombre = teclado.next();
         System.out.println("    Introduce el dni del cliente: ");
         String nif = teclado.next();
-        if (listaClientes.getLista().containsKey(nif)) throw new ClienteException();
         System.out.println("    Introduce el CP del cliente: ");
         int cp = teclado.nextInt();
         System.out.println("    Introduce la provincia: ");
@@ -159,7 +158,7 @@ public class Menu {
         switch(opcion){
             case 1: System.out.println("Introduzca el dni del cliente de la factura: ");
                 String nif= teclado.next();
-                HashMap<String,Cliente> clientes=listaClientes.getLista();
+                HashMap<String,Cliente> clientes=listaClientes.recuperarListado();
                 Cliente clienteFactura=clientes.get(nif);
                 System.out.println("Introduzca el código de la factura a emitir: ");
                 String codFact= teclado.next();

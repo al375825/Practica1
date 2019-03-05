@@ -44,7 +44,7 @@ public class Factura {
         double duracion=0;
         int mes = LocalDateTime.now().getMonthValue();
         for(Llamada llamada:cliente.listadoLlamadas()){
-            if(llamada.getFechaLlamada().getMonthValue()==mes) {
+            if(llamada.getFecha().getMonthValue()==mes) {
                 duracion+=llamada.getDuracion();
             }
         }
@@ -62,7 +62,7 @@ public class Factura {
         return cadenaFactura.toString();
     }
 
-    public LocalDateTime getFechaFactura(){
+    public LocalDateTime getFecha(){
         return this.fecha;
     }
 }

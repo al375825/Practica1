@@ -17,7 +17,7 @@ public class Llamada {
         return this.destino;
     }
 
-    public LocalDateTime getFechaLlamada(){
+    public LocalDateTime getFecha(){
         return this.fecha;
     }
 
