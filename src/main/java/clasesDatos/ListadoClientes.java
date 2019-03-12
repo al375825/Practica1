@@ -9,7 +9,7 @@ public class ListadoClientes {
         this.lista = new HashMap<String, Cliente>();
     }
 
-    public void añadir(Cliente cliente) throws  ClienteException{
+    public void anadir(Cliente cliente) throws  ClienteException{
         if (lista.containsKey(cliente.getNif()))throw new ClienteException();
         lista.put(cliente.nif, cliente);
     }
@@ -25,7 +25,6 @@ public class ListadoClientes {
     public HashMap<String, Cliente> recuperarListado(){
         return lista;
     }
-
 
 
 }

@@ -8,7 +8,8 @@ import java.util.Scanner;
 import java.util.Set;
 
 public class Menu {
-    public ListadoClientes listaClientes = new ListadoClientes();
+    private ListadoClientes listaClientes = new ListadoClientes();
+    private Aplicacion aplicacion = new Aplicacion();
 
     public static void main (String[] args) throws ClienteException {
         new Menu().mostrarMenu();
@@ -80,136 +81,51 @@ public class Menu {
     }
 
     public void seleccionarOpcionClientes(Byte opcion) throws ClienteException {
-        Scanner teclado = new Scanner(System.in);
         switch(opcion){
-            case 1: crearCliente();
-                System.out.println("Cliente creado");
+            case 1: aplicacion.crearCliente();
                 break;
-            case 2: System.out.println("Introduce el nif: ");
-                String nif= teclado.next();
-                Cliente cliente = listaClientes.recuperarCliente(nif);
-                listaClientes.borrar(cliente);
-                System.out.println("Cliente eliminado");
+            case 2: aplicacion.eliminarCliente();
                 break;
-            case 3: System.out.println("Introduce el nif: ");
-                nif= teclado.next();
-                cliente = listaClientes.recuperarCliente(nif);
-                System.out.println("Introduzca la nueva tarifa: ");
-                Double dato = teclado.nextDouble();
-                Tarifa tarifa = new Tarifa(dato);
-                cliente.cambioTarifa(tarifa);
-                System.out.println("Tarifa cambiada con éxito.");
+            case 3: aplicacion.cambioTarifa();
                 break;
-            case 4:
-                System.out.println("Introduce el nif: ");
-                String dni= teclado.next();
-                System.out.println(listaClientes.recuperarCliente(dni).clienteToString());
+            case 4: aplicacion.recuperarDatos();
                 break;
-            case 5: HashMap<String,Cliente> lista = listaClientes.recuperarListado();
-                Set<String> dnis= lista.keySet();
-                for(String dnicliente:dnis){
-                    Cliente datosCliente=listaClientes.recuperarCliente(dnicliente);
-                    System.out.println(datosCliente.clienteToString());
-                }
+            case 5: aplicacion.listarClientes();
                 break;
-            case 6: System.out.println("Adiós");
+            case 6: aplicacion.despedida();
                 break;
-            default: System.out.println("Opción no válida, seleccione otra.");
+            default: aplicacion.opcionInvalida();
                 break;
         }
     }
 
-    public void crearCliente() throws ClienteException {
-        Scanner teclado = new Scanner(System.in);
-        System.out.println("    Introduce el nombre del cliente: ");
-        String nombre = teclado.next();
-        System.out.println("    Introduce el dni del cliente: ");
-        String nif = teclado.next();
-        System.out.println("    Introduce el CP del cliente: ");
-        int cp = teclado.nextInt();
-        System.out.println("    Introduce la provincia: ");
-        String provincia = teclado.next();
-        System.out.println("    Introduce la población: ");
-        String poblacion = teclado.next();
-        Direccion dirCliente = new Direccion(cp, provincia, poblacion);
-        System.out.println("    Introduce su correo: ");
-        String correo = teclado.next();
-        System.out.println("    Introduce la tarifa (€/min): ");
-        double precio = teclado.nextDouble();
-        Tarifa tarifa = new Tarifa(precio);
 
-        System.out.println("    Tipo de cliente: 1) Empresa o 2) Particular ");
-        int opcion = teclado.nextInt();
-        if (opcion == 1) {
-            Empresa nuevoCliente = new Empresa(nombre, nif, dirCliente, correo, tarifa);
-            listaClientes.añadir(nuevoCliente);
-        } else {
-            System.out.println("    Introduce los apellidos del cliente: ");
-            String apellidos = teclado.next();
-            Particular nuevoCliente = new Particular(apellidos, nombre, nif, dirCliente, correo, tarifa);
-            listaClientes.añadir(nuevoCliente);
-        }
-    }
 
     public void seleccionarOpcionFacturas(Byte opcion){
         Scanner teclado = new Scanner(System.in);
         switch(opcion){
-            case 1: System.out.println("Introduzca el dni del cliente de la factura: ");
-                String nif= teclado.next();
-                HashMap<String,Cliente> clientes=listaClientes.recuperarListado();
-                Cliente clienteFactura=clientes.get(nif);
-                System.out.println("Introduzca el código de la factura a emitir: ");
-                String codFact= teclado.next();
-                Factura facturaAEmitir=new Factura(codFact,clienteFactura);
-                clienteFactura.getFacturas().put(codFact,facturaAEmitir);
-                System.out.println(facturaAEmitir.facturaToString());
+            case 1: aplicacion.emitirFactura();
                 break;
-            case 2: System.out.println("Introduce el nif: ");
-                nif= teclado.next();
-                Cliente cliente = listaClientes.recuperarCliente(nif);
-                System.out.println("Introduce el código de la factura: ");
-                codFact= teclado.next();
-                System.out.println(cliente.recuperarFactura(codFact).facturaToString());
+            case 2: aplicacion.recuperarFactura();
                 break;
-            case 3: System.out.println("Introduce el nif: ");
-                nif= teclado.next();
-                cliente = listaClientes.recuperarCliente(nif);
-                HashMap<String,Factura> listaFacturas = cliente.getFacturas();
-                Set<String> codigosFacturas=listaFacturas.keySet();
-                for(String codfactura: codigosFacturas){
-                    System.out.println(listaFacturas.get(codfactura).facturaToString());
-                }
+            case 3: aplicacion.mostrarFacturas();
                 break;
-            case 4: System.out.println("Adiós");
+            case 4: aplicacion.despedida();
                 break;
-            default: System.out.println("Opción no válida, seleccione otra.");
+            default: aplicacion.opcionInvalida();
                 break;
         }
     }
 
     public void seleccionarOpcionLlamadas(Byte opcion){
-        Scanner teclado = new Scanner(System.in);
         switch(opcion){
-            case 1: System.out.println("¿Quién realiza la llamada? ");
-                String cliente= teclado.next();
-                System.out.println("Introduce el destino: ");
-                String destino= teclado.next();
-                System.out.println("Introduce la duración (minutos): ");
-                Double duracion= teclado.nextDouble();
-                Llamada llamada=new Llamada(destino,duracion);
-                listaClientes.recuperarCliente(cliente).listadoLlamadas().add(llamada);
-                System.out.println("Llamada realizada.");
+            case 1: aplicacion.crearLlamadas();
                 break;
-            case 2: System.out.println("Introduce el nif: ");
-                String nif= teclado.next();
-                Cliente clienteLlamadas = listaClientes.recuperarCliente(nif);
-                for(Llamada llamadasCliente:clienteLlamadas.listadoLlamadas()){
-                    System.out.println(llamadasCliente.llamadaToString());
-                }
+            case 2: aplicacion.listarLLamadas();
                 break;
-            case 3: System.out.println("Adiós");
+            case 3: aplicacion.despedida();
                 break;
-            default: System.out.println("Opción no válida, seleccione otra.");
+            default: aplicacion.opcionInvalida();
                 break;
         }
     }
