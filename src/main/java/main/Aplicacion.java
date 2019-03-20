@@ -1,12 +1,16 @@
 package main;
 
 import clasesDatos.*;
+import jdk.vm.ci.meta.Local;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.Set;
 
-public class Aplicacion {
+public class Aplicacion{
 
     public ListadoClientes listaClientes = new ListadoClientes();
 
@@ -73,11 +77,9 @@ public class Aplicacion {
     }
 
     public void listarClientes(){
-        HashMap<String,Cliente> lista = listaClientes.recuperarListado();
-        Set<String> dnis= lista.keySet();
-        for(String dnicliente:dnis){
-            Cliente datosCliente=listaClientes.recuperarCliente(dnicliente);
-            System.out.println(datosCliente.clienteToString());
+        ArrayList<Cliente> lista = listaClientes.recuperarListado();
+        for(Cliente clienteLista:lista){
+            System.out.println(clienteLista.clienteToString());
         }
     }
 
@@ -85,8 +87,7 @@ public class Aplicacion {
         Scanner teclado = new Scanner(System.in);
         System.out.println("Introduzca el dni del cliente de la factura: ");
         String nif= teclado.next();
-        HashMap<String,Cliente> clientes=listaClientes.recuperarListado();
-        Cliente clienteFactura=clientes.get(nif);
+        Cliente clienteFactura=listaClientes.recuperarCliente(nif);
         System.out.println("Introduzca el código de la factura a emitir: ");
         String codFact= teclado.next();
         Factura facturaAEmitir=new Factura(codFact,clienteFactura);
@@ -138,6 +139,74 @@ public class Aplicacion {
             System.out.println(llamadasCliente.llamadaToString());
         }
     }
+
+    public void clientesIntervalo(){
+        Scanner teclado= new Scanner(System.in);
+        System.out.println("Introduce dia inicio: ");
+        int dia=teclado.nextInt();
+        System.out.println("Introduce mes inicio: ");
+        int mes=teclado.nextInt();
+        System.out.println("Introduce año inicio: ");
+        int año=teclado.nextInt();
+        LocalDateTime fechaInicio = LocalDateTime.of(año,mes,dia,0,0,0);
+        System.out.println("Introduce dia fin: ");
+        dia=teclado.nextInt();
+        System.out.println("Introduce mes fin: ");
+        mes=teclado.nextInt();
+        System.out.println("Introduce año fin: ");
+        año=teclado.nextInt();
+        LocalDateTime fechaFin = LocalDateTime.of(año,mes,dia,23,59,59);
+        ArrayList<Cliente> enIntervalo= GenericClass.generico(listaClientes.recuperarListado(), fechaInicio, fechaFin);
+        System.out.println(enIntervalo.toString());
+    }
+
+    public void llamadasIntervalo(){
+        Scanner teclado = new Scanner(System.in);
+        System.out.println("Introduce el nif: ");
+        String nif= teclado.next();
+        Cliente cliente=listaClientes.recuperarCliente(nif);
+        System.out.println("Introduce dia inicio: ");
+        int dia=teclado.nextInt();
+        System.out.println("Introduce mes inicio: ");
+        int mes=teclado.nextInt();
+        System.out.println("Introduce año inicio: ");
+        int año=teclado.nextInt();
+        LocalDateTime fechaInicio = LocalDateTime.of(año,mes,dia,0,0,0);
+        System.out.println("Introduce dia fin: ");
+        dia=teclado.nextInt();
+        System.out.println("Introduce mes fin: ");
+        mes=teclado.nextInt();
+        System.out.println("Introduce año fin: ");
+        año=teclado.nextInt();
+        LocalDateTime fechaFin = LocalDateTime.of(año,mes,dia,23,59,59);
+        ArrayList<Llamada> enIntervalo= GenericClass.generico(cliente.listadoLlamadas(), fechaInicio, fechaFin);
+        System.out.println(enIntervalo.toString());
+
+    }
+
+    public void facturasIntervalo(){
+        Scanner teclado = new Scanner(System.in);
+        System.out.println("Introduce el nif: ");
+        String nif= teclado.next();
+        Cliente cliente=listaClientes.recuperarCliente(nif);
+        System.out.println("Introduce dia inicio: ");
+        int dia=teclado.nextInt();
+        System.out.println("Introduce mes inicio: ");
+        int mes=teclado.nextInt();
+        System.out.println("Introduce año inicio: ");
+        int año=teclado.nextInt();
+        LocalDateTime fechaInicio = LocalDateTime.of(año,mes,dia,0,0,0);
+        System.out.println("Introduce dia fin: ");
+        dia=teclado.nextInt();
+        System.out.println("Introduce mes fin: ");
+        mes=teclado.nextInt();
+        System.out.println("Introduce año fin: ");
+        año=teclado.nextInt();
+        LocalDateTime fechaFin = LocalDateTime.of(año,mes,dia,23,59,59);
+        ArrayList<Factura> enIntervalo= GenericClass.generico(cliente.listadoFacturas(), fechaInicio, fechaFin);
+        System.out.println(enIntervalo.toString());
+    }
+
     public void despedida(){
         System.out.println("Adiós");
     }

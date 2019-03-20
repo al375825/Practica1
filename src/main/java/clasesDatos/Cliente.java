@@ -1,6 +1,7 @@
 package clasesDatos;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 
@@ -11,7 +12,7 @@ public abstract class Cliente implements Fecha{
     protected String correo;
     protected LocalDateTime fecha;
     protected Tarifa tarifa;
-    protected LinkedList<Llamada> llamadas;
+    protected ArrayList<Llamada> llamadas;
     protected HashMap<String, Factura> facturas;
 
 
@@ -23,7 +24,7 @@ public abstract class Cliente implements Fecha{
         this.correo = correo;
         this.fecha = LocalDateTime.now();
         this.tarifa = tarifa;
-        llamadas=new LinkedList<Llamada>();
+        llamadas=new ArrayList<Llamada>();
         facturas=new HashMap<String,Factura>();
     }
 
@@ -59,8 +60,16 @@ public abstract class Cliente implements Fecha{
         this.tarifa = nuevatarifa;
     }
 
-    public LinkedList<Llamada> listadoLlamadas(){
+    public ArrayList<Llamada> listadoLlamadas(){
         return llamadas;
+    }
+
+    public ArrayList<Factura> listadoFacturas(){
+        ArrayList<Factura> lista=new ArrayList<Factura>();
+        for(String codFactura: facturas.keySet()){
+            lista.add(facturas.get(codFactura));
+        }
+        return lista;
     }
 
     public Factura recuperarFactura(String codigo){

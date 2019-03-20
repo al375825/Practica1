@@ -1,5 +1,6 @@
 package clasesDatos;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ListadoClientes {
@@ -22,8 +23,12 @@ public class ListadoClientes {
         return lista.get(nif);
     }
 
-    public HashMap<String, Cliente> recuperarListado(){
-        return lista;
+    public ArrayList<Cliente> recuperarListado(){
+        ArrayList<Cliente> listaClientes= new ArrayList<Cliente>();
+        for(String clave: lista.keySet()){
+            listaClientes.add(lista.get(clave));
+        }
+        return listaClientes;
     }
 
 

@@ -52,7 +52,8 @@ public class Menu {
         System.out.println("3. Cambiar tarifa ");
         System.out.println("4. Recuperación de datos");
         System.out.println("5. Listado de clientes");
-        System.out.println("6. Salir");
+        System.out.println("6. Listado de clientes entre dos fechas");
+        System.out.println("7. Salir");
         System.out.print("Seleccione una opción: ");
         Scanner teclado = new Scanner(System.in);
         Byte opcion=teclado.nextByte();
@@ -63,7 +64,8 @@ public class Menu {
         System.out.println("1. Emitir una factura");
         System.out.println("2. Recuperar una factura ");
         System.out.println("3. Mostrar todas las facturas");
-        System.out.println("4. Salir");
+        System.out.println("4. Listado de facturas entre dos fechas");
+        System.out.println("5. Salir");
         System.out.print("Seleccione una opción: ");
         Scanner teclado = new Scanner(System.in);
         Byte opcion=teclado.nextByte();
@@ -73,7 +75,8 @@ public class Menu {
     public void menuLlamadas(){
         System.out.println("1. Nueva llamada");
         System.out.println("2. Listar llamadas");
-        System.out.println("3. Salir");
+        System.out.println("3. Listado de llamadas entre dos fechas");
+        System.out.println("4. Salir");
         System.out.print("Seleccione una opción: ");
         Scanner teclado = new Scanner(System.in);
         Byte opcion=teclado.nextByte();
@@ -92,7 +95,9 @@ public class Menu {
                 break;
             case 5: aplicacion.listarClientes();
                 break;
-            case 6: aplicacion.despedida();
+            case 6: aplicacion.clientesIntervalo();
+                break;
+            case 7: aplicacion.despedida();
                 break;
             default: aplicacion.opcionInvalida();
                 break;
@@ -109,7 +114,9 @@ public class Menu {
                 break;
             case 3: aplicacion.mostrarFacturas();
                 break;
-            case 4: aplicacion.despedida();
+            case 4: aplicacion.facturasIntervalo();
+                break;
+            case 5: aplicacion.despedida();
                 break;
             default: aplicacion.opcionInvalida();
                 break;
@@ -122,7 +129,9 @@ public class Menu {
                 break;
             case 2: aplicacion.listarLLamadas();
                 break;
-            case 3: aplicacion.despedida();
+            case 3: aplicacion.llamadasIntervalo();
+                break;
+            case 4: aplicacion.despedida();
                 break;
             default: aplicacion.opcionInvalida();
                 break;
