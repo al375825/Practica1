@@ -1,7 +1,6 @@
 package main;
 
 import clasesDatos.*;
-import jdk.vm.ci.meta.Local;
 
 import java.io.*;
 import java.time.LocalDate;
@@ -192,7 +191,8 @@ public class Aplicacion implements Serializable {
         año=teclado.nextInt();
         LocalDateTime fechaFin = LocalDateTime.of(año,mes,dia,23,59,59);
         ArrayList<Cliente> enIntervalo= GenericClass.generico(listaClientes.recuperarListado(), fechaInicio, fechaFin);
-        System.out.println(enIntervalo.toString());
+        for(Cliente cliente:enIntervalo)
+            System.out.println(cliente.clienteToString());
     }
 
     public void llamadasIntervalo(){
@@ -215,8 +215,8 @@ public class Aplicacion implements Serializable {
         año=teclado.nextInt();
         LocalDateTime fechaFin = LocalDateTime.of(año,mes,dia,23,59,59);
         ArrayList<Llamada> enIntervalo= GenericClass.generico(cliente.listadoLlamadas(), fechaInicio, fechaFin);
-        System.out.println(enIntervalo.toString());
-
+        for(Llamada llamada:enIntervalo)
+            System.out.println(llamada.llamadaToString());
     }
 
     public void facturasIntervalo(){
@@ -239,7 +239,8 @@ public class Aplicacion implements Serializable {
         año=teclado.nextInt();
         LocalDateTime fechaFin = LocalDateTime.of(año,mes,dia,23,59,59);
         ArrayList<Factura> enIntervalo= GenericClass.generico(cliente.listadoFacturas(), fechaInicio, fechaFin);
-        System.out.println(enIntervalo.toString());
+        for(Factura factura:enIntervalo)
+            System.out.println(factura.facturaToString());
     }
 
     public void despedida(){
