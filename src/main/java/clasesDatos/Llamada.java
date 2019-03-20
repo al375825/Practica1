@@ -1,8 +1,9 @@
 package clasesDatos;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class Llamada implements Fecha{
+public class Llamada implements Fecha, Serializable {
     private String destino;
     private LocalDateTime fecha;
     private double duracion;

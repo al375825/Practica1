@@ -1,20 +1,23 @@
 package main;
 
 import clasesDatos.*;
+
+import java.io.*;
 import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.Set;
 
-public class Menu {
-    private ListadoClientes listaClientes = new ListadoClientes();
+public class Menu{
     private Aplicacion aplicacion = new Aplicacion();
 
     public static void main (String[] args) throws ClienteException {
         new Menu().mostrarMenu();
+
     }
     public void mostrarMenu() throws ClienteException {
+        aplicacion.leerDesdeFichero("fichero.bin");
         Scanner teclado = new Scanner(System.in);
         Byte opcion;
         do {
@@ -28,6 +31,7 @@ public class Menu {
             System.out.println("Presione (1) para volver al menú");
             opcion = teclado.nextByte();
         }while(opcion==1);
+        aplicacion.guardarEnFichero("fichero.bin", aplicacion.listaClientes);
         System.out.println("Adiós");
     }
 

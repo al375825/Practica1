@@ -1,8 +1,9 @@
 package clasesDatos;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class Factura implements Fecha {
+public class Factura implements Fecha, Serializable {
     private String codigo;
     private Tarifa tarifa;
     private LocalDateTime fecha;

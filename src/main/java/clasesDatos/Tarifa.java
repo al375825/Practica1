@@ -1,6 +1,8 @@
 package clasesDatos;
 
-public class Tarifa {
+import java.io.Serializable;
+
+public class Tarifa implements Serializable {
     double coste;
 
     public Tarifa(double coste){

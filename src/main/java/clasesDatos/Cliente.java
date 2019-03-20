@@ -1,11 +1,12 @@
 package clasesDatos;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 
-public abstract class Cliente implements Fecha{
+public abstract class Cliente implements Fecha, Serializable {
     protected String nombre;
     protected String nif;
     protected Direccion direccion;

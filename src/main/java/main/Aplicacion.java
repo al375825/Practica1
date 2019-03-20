@@ -3,6 +3,7 @@ package main;
 import clasesDatos.*;
 import jdk.vm.ci.meta.Local;
 
+import java.io.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -10,9 +11,43 @@ import java.util.HashMap;
 import java.util.Scanner;
 import java.util.Set;
 
-public class Aplicacion{
+public class Aplicacion implements Serializable {
 
     public ListadoClientes listaClientes = new ListadoClientes();
+
+    public ListadoClientes leerDesdeFichero(String nombre) {
+
+        File archivo = new File(nombre);
+        try {
+            if(archivo.isFile()){
+                FileInputStream fis = new FileInputStream(nombre);
+                ObjectInputStream ois = new ObjectInputStream(fis);
+                listaClientes = (ListadoClientes) ois.readObject();
+                ois.close();
+                fis.close();
+            } else {
+                archivo.createNewFile();
+                listaClientes = new ListadoClientes();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return listaClientes;
+    }
+
+    public void guardarEnFichero(String nombre, ListadoClientes listaClientes){
+        FileOutputStream fos = null;
+        try {
+            fos = new FileOutputStream(nombre);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(listaClientes);
+            oos.close();
+            fos.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     public void crearCliente() throws ClienteException {
         Scanner teclado = new Scanner(System.in);
@@ -213,5 +248,9 @@ public class Aplicacion{
 
     public void opcionInvalida(){
         System.out.println("Opción no válida, seleccione otra.");
+    }
+
+    public ListadoClientes getListado(){
+        return listaClientes;
     }
 }

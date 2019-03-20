@@ -1,9 +1,10 @@
 package clasesDatos;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class ListadoClientes {
+public class ListadoClientes implements Serializable {
     private HashMap<String, Cliente> lista;
 
     public ListadoClientes(){
