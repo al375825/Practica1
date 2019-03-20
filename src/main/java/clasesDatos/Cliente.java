@@ -4,12 +4,12 @@ import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.LinkedList;
 
-public abstract class Cliente {
+public abstract class Cliente implements Fecha{
     protected String nombre;
     protected String nif;
     protected Direccion direccion;
     protected String correo;
-    protected LocalDateTime fechaAlta;
+    protected LocalDateTime fecha;
     protected Tarifa tarifa;
     protected LinkedList<Llamada> llamadas;
     protected HashMap<String, Factura> facturas;
@@ -21,7 +21,7 @@ public abstract class Cliente {
         this.nif = nif;
         this.direccion = direccion;
         this.correo = correo;
-        this.fechaAlta = LocalDateTime.now();
+        this.fecha = LocalDateTime.now();
         this.tarifa = tarifa;
         llamadas=new LinkedList<Llamada>();
         facturas=new HashMap<String,Factura>();
@@ -44,7 +44,7 @@ public abstract class Cliente {
     }
 
     public LocalDateTime getFecha(){
-        return this.fechaAlta;
+        return this.fecha;
     }
 
     public Tarifa getTarifa(){
@@ -71,7 +71,7 @@ public abstract class Cliente {
         StringBuilder cadenaCliente=new StringBuilder();
         cadenaCliente.append(nombre+"   "+nif+"   ");
         cadenaCliente.append(direccion.getCp()+" "+direccion.getProvincia()+" "+direccion.getPoblacion()+"   ");
-        cadenaCliente.append(correo+"   "+ fechaAlta.toString()+"   ");
+        cadenaCliente.append(correo+"   "+ fecha.toString()+"   ");
         cadenaCliente.append(tarifa.getCoste());
         return cadenaCliente.toString();
     }

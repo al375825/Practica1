@@ -2,7 +2,7 @@ package clasesDatos;
 
 import java.time.LocalDateTime;
 
-public class Factura {
+public class Factura implements Fecha {
     private String codigo;
     private Tarifa tarifa;
     private LocalDateTime fecha;

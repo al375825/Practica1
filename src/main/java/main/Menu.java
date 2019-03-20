@@ -102,7 +102,6 @@ public class Menu {
 
 
     public void seleccionarOpcionFacturas(Byte opcion){
-        Scanner teclado = new Scanner(System.in);
         switch(opcion){
             case 1: aplicacion.emitirFactura();
                 break;

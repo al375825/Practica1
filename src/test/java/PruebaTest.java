@@ -12,12 +12,12 @@ public class PruebaTest {
             new Direccion(12006, "cs", "cs"), "al375825@uji.es", new Tarifa(60));
 
     @Test
-    public void listaClienteTest(){
-        listaClientes.añadir(cliente1);
-        listaClientes.añadir(cliente2);
-        assertEquals(2, listaClientes.getLista().size());
+    public void listaClienteTest() throws ClienteException {
+        listaClientes.anadir(cliente1);
+        listaClientes.anadir(cliente2);
+        assertEquals(2, listaClientes.recuperarListado().size());
         listaClientes.borrar(cliente1);
-        assertEquals(1, listaClientes.getLista().size());
+        assertEquals(1, listaClientes.recuperarListado().size());
     }
 
     Llamada llamada1 = new Llamada("123456789", 10);

@@ -2,7 +2,7 @@ package clasesDatos;
 
 import java.time.LocalDateTime;
 
-public class Llamada {
+public class Llamada implements Fecha{
     private String destino;
     private LocalDateTime fecha;
     private double duracion;
