@@ -1,13 +1,8 @@
 package main;
 
-import clasesDatos.*;
+import datos.*;
 
-import java.io.*;
-import java.time.LocalDateTime;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.Scanner;
-import java.util.Set;
 
 public class Menu{
     private Aplicacion aplicacion = new Aplicacion();

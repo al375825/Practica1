@@ -1,8 +1,7 @@
-package clasesDatos;
+package datos;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Collection;
 
 public class GenericClass {
     public static <T extends Fecha> ArrayList<T> generico(ArrayList<T> conjuntoObjetos, LocalDateTime inicio, LocalDateTime fin) {

@@ -1,4 +1,4 @@
-package clasesDatos;
+package datos;
 
 public class Particular extends Cliente {
     private String apellidos;

@@ -1,6 +1,5 @@
-import org.junit.Before;
 import org.junit.Test;
-import clasesDatos.*;
+import datos.*;
 import static org.hamcrest.core.IsNull.notNullValue;
 import static org.junit.Assert.*;
 

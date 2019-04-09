@@ -1,4 +1,4 @@
-package clasesDatos;
+package datos;
 
 public class ClienteException extends Exception {
     public ClienteException(){
