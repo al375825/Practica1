@@ -1,5 +1,8 @@
 package datos;
 
+import datos.cliente.Cliente;
+import datos.cliente.ClienteException;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,9 +14,9 @@ public class ListadoClientes implements Serializable {
         this.lista = new HashMap<String, Cliente>();
     }
 
-    public void anadir(Cliente cliente) throws  ClienteException{
+    public void anadir(Cliente cliente) throws ClienteException {
         if (lista.containsKey(cliente.getNif()))throw new ClienteException();
-        lista.put(cliente.nif, cliente);
+        lista.put(cliente.getNif(), cliente);
     }
 
     public void borrar(Cliente cliente){

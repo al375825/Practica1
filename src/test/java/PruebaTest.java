@@ -1,3 +1,10 @@
+import datos.cliente.ClienteException;
+import datos.cliente.Direccion;
+import datos.cliente.Empresa;
+import datos.cliente.Particular;
+import datos.factura.Factura;
+import datos.llamada.Llamada;
+import datos.tarifa.Tarifa;
 import org.junit.Test;
 import datos.*;
 import static org.hamcrest.core.IsNull.notNullValue;

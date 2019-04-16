@@ -1,6 +1,10 @@
 package main;
 
 import datos.*;
+import datos.cliente.*;
+import datos.factura.Factura;
+import datos.llamada.Llamada;
+import datos.tarifa.Tarifa;
 
 import java.io.*;
 import java.time.LocalDateTime;

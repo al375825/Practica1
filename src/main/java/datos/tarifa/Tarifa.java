@@ -1,4 +1,6 @@
-package datos;
+package datos.tarifa;
+
+import datos.llamada.Llamada;
 
 import java.io.Serializable;
 
@@ -11,5 +13,9 @@ public class Tarifa implements Serializable {
 
     public double getCoste(){
         return this.coste;
+    }
+
+    public double precioLlamada(Llamada llamada){
+        return llamada.getDuracion() * coste;
     }
 }

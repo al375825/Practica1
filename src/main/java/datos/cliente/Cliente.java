@@ -1,4 +1,9 @@
-package datos;
+package datos.cliente;
+
+import datos.*;
+import datos.factura.Factura;
+import datos.llamada.Llamada;
+import datos.tarifa.Tarifa;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;

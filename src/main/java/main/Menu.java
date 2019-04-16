@@ -1,6 +1,6 @@
 package main;
 
-import datos.*;
+import datos.cliente.ClienteException;
 
 import java.util.Scanner;
 

@@ -1,4 +1,6 @@
-package datos;
+package datos.cliente;
+
+import datos.tarifa.Tarifa;
 
 public class Particular extends Cliente {
     private String apellidos;

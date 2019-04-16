@@ -1,11 +1,15 @@
-package datos;
+package datos.llamada;
+
+import datos.Fecha;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 public class Llamada implements Fecha, Serializable {
     private String destino;
     private LocalDateTime fecha;
+    private LocalTime hora;
     private double duracion;
 
     public Llamada(String destino, double duracion){
@@ -21,6 +25,8 @@ public class Llamada implements Fecha, Serializable {
     public LocalDateTime getFecha(){
         return this.fecha;
     }
+
+    public LocalTime getHora(){ return this.hora;}
 
     public double getDuracion(){
         return this.duracion;
