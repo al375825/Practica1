@@ -47,6 +47,7 @@ public class Aplicacion implements Serializable {
         }
     }
 
+    // todo En vez de re-lanzar la excepción, gestionarla en este método
     public void crearCliente() throws ClienteException {
         Scanner teclado = new Scanner(System.in);
         System.out.println("    Introduce el nombre del cliente: ");
@@ -69,12 +70,12 @@ public class Aplicacion implements Serializable {
         System.out.println("    Tipo de cliente: 1) Empresa o 2) Particular ");
         int opcion = teclado.nextInt();
         if (opcion == 1) {
-            Empresa nuevoCliente = new Empresa(nombre, nif, dirCliente, correo, tarifa);
+            Cliente nuevoCliente = new Empresa(nombre, nif, dirCliente, correo, tarifa);
             listaClientes.anadir(nuevoCliente);
         } else {
             System.out.println("    Introduce los apellidos del cliente: ");
             String apellidos = teclado.next();
-            Particular nuevoCliente = new Particular(apellidos, nombre, nif, dirCliente, correo, tarifa);
+            Cliente nuevoCliente = new Particular(apellidos, nombre, nif, dirCliente, correo, tarifa);
             listaClientes.anadir(nuevoCliente);
         }
         System.out.println("Cliente creado");

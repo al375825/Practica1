@@ -15,6 +15,7 @@ public class Menu{
         aplicacion.leerDesdeFichero("fichero.bin");
         Scanner teclado = new Scanner(System.in);
         Byte opcion;
+        // todo Si es 4 que salga del bucle.
         do {
             System.out.println("1. Clientes ");
             System.out.println("2. Facturas ");
@@ -82,6 +83,7 @@ public class Menu{
         seleccionarOpcionLlamadas(opcion);
     }
 
+    // todo No debéis desentenderos de la excepción.
     public void seleccionarOpcionClientes(Byte opcion) throws ClienteException {
         switch(opcion){
             case 1: aplicacion.crearCliente();
