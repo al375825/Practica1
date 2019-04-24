@@ -2,20 +2,11 @@ package datos.tarifa;
 
 import datos.llamada.Llamada;
 
-import java.io.Serializable;
+public interface InterfazTarifa {
+        String toString();
 
-public class Tarifa implements Serializable {
-    double coste;
+        double getCoste();
 
-    public Tarifa(double coste){
-        this.coste = coste;
-    }
+        double precioLlamada(Llamada llamada);
 
-    public double getCoste(){
-        return this.coste;
-    }
-
-    public double precioLlamada(Llamada llamada){
-        return llamada.getDuracion() * coste;
-    }
 }
