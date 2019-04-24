@@ -2,7 +2,7 @@ package datos.tarifa;
 
 import datos.llamada.Llamada;
 
-public interface InterfazTarifa {
+public interface Tarifa {
         String toString();
 
         double getCoste();

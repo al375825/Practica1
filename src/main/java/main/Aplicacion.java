@@ -5,6 +5,7 @@ import datos.cliente.*;
 import datos.factura.Factura;
 import datos.llamada.Llamada;
 import datos.tarifa.Tarifa;
+import datos.tarifa.TarifaBasica;
 
 import java.io.*;
 import java.time.LocalDateTime;
@@ -69,7 +70,7 @@ public class Aplicacion implements Serializable {
         String correo = teclado.next();
         System.out.println("    Introduce la tarifa (€/min): ");
         double precio = teclado.nextDouble();
-        Tarifa tarifa = new Tarifa(precio);
+        Tarifa tarifa = new TarifaBasica(precio);
 
         System.out.println("    Tipo de cliente: 1) Empresa o 2) Particular ");
         int opcion = teclado.nextInt();
@@ -102,7 +103,7 @@ public class Aplicacion implements Serializable {
         Cliente cliente = listaClientes.recuperarCliente(nif);
         System.out.println("Introduzca la nueva tarifa: ");
         Double dato = teclado.nextDouble();
-        Tarifa tarifa = new Tarifa(dato);
+        Tarifa tarifa = new TarifaBasica(dato);
         cliente.cambioTarifa(tarifa);
         System.out.println("Tarifa cambiada con éxito.");
     }

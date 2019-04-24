@@ -5,26 +5,28 @@ import datos.llamada.Llamada;
 import java.io.Serializable;
 import java.time.LocalTime;
 
-public class TarifaPeriodo extends Tarifa implements Serializable {
+public class TarifaPeriodo extends Oferta implements Serializable {
 
-    private LocalTime hora;
+    private LocalTime horaini;
+    private LocalTime horafin;
 
-    public TarifaPeriodo(double coste, LocalTime hora) {
-        super(coste);
-        this.hora = hora;
+    public TarifaPeriodo(double coste, Tarifa tarifa, LocalTime horaini, LocalTime horafin) {
+        super(coste, tarifa);
+        this.horaini = horaini;
+        this.horafin = horafin;
     }
 
     @Override
     public double precioLlamada(Llamada llamada) {
-        Double anterior = 0.0; //tarifa.calcularPrecioLlamada(llamada); hay que cambiarlo
-        Double actual = llamada.getDuracion() * coste;
+        Double antes = tarifa.precioLlamada(llamada);
+        Double ahora = llamada.getDuracion() * coste;
 
-        if(llamada.getHora().isAfter(hora)) {
-            if (actual < anterior) {
-                return actual;
+        if(llamada.getHora()>horaini.getHour() && llamada.getHora()<horafin.getHour()) {
+            if (ahora < antes) {
+                return ahora;
             }
         }
 
-        return anterior;
+        return antes;
     }
 }

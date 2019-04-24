@@ -4,16 +4,16 @@ import datos.llamada.Llamada;
 
 import java.io.Serializable;
 
-public class Tarifa implements InterfazTarifa, Serializable {
+public class Oferta implements Tarifa, Serializable {
     protected double coste;
-    protected InterfazTarifa tarifa;
+    protected Tarifa tarifa;
 
-    public Tarifa(double coste, InterfazTarifa tarifa){
+    public Oferta(double coste, Tarifa tarifa){
         this.tarifa=tarifa;
         this.coste = coste;
     }
 
-    protected InterfazTarifa getTarifa(){
+    protected Tarifa getTarifa(){
         return this.tarifa;
     }
 

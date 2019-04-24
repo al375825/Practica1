@@ -5,6 +5,7 @@ import datos.cliente.Particular;
 import datos.factura.Factura;
 import datos.llamada.Llamada;
 import datos.tarifa.Tarifa;
+import datos.tarifa.TarifaBasica;
 import org.junit.Test;
 import datos.*;
 import static org.hamcrest.core.IsNull.notNullValue;
@@ -13,9 +14,9 @@ import static org.junit.Assert.*;
 public class PruebaTest {
     ListadoClientes listaClientes = new ListadoClientes();
     Empresa cliente1 = new Empresa("Carlos", "20902106M", new Direccion(12004, "Cs", "Cs"),
-            "al375884@uji.es", new Tarifa(20));
+            "al375884@uji.es", new TarifaBasica(20));
     Particular cliente2 = new Particular("Heredia", "Edgar", "20919905W",
-            new Direccion(12006, "cs", "cs"), "al375825@uji.es", new Tarifa(60));
+            new Direccion(12006, "cs", "cs"), "al375825@uji.es", new TarifaBasica(60));
 
     @Test
     public void listaClienteTest() throws ClienteException {
@@ -55,9 +56,9 @@ public class PruebaTest {
 
    @Test
     public void cambioTarifaTest(){
-        cliente1.cambioTarifa(new Tarifa(15));
+        cliente1.cambioTarifa(new TarifaBasica(15));
         assertEquals(15, cliente1.getTarifa().getCoste(), 0.0);
-        cliente2.cambioTarifa(new Tarifa(cliente2.getTarifa().getCoste()/2));
+        cliente2.cambioTarifa(new TarifaBasica(cliente2.getTarifa().getCoste()/2));
         assertEquals(30, cliente2.getTarifa().getCoste(), 0.0);
     }
 

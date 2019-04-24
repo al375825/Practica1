@@ -9,12 +9,20 @@ import java.time.LocalTime;
 public class Llamada implements Fecha, Serializable {
     private String destino;
     private LocalDateTime fecha;
-    private LocalTime hora;
+    //private LocalTime hora;
     private double duracion;
 
     public Llamada(String destino, double duracion){
         this.destino = destino;
         this.fecha = LocalDateTime.now();
+        //this.hora = LocalTime.now();
+        this.duracion = duracion;
+    }
+
+    public Llamada(String destino, LocalDateTime fecha, double duracion){
+        this.destino = destino;
+        this.fecha = fecha;
+        //this.hora = hora;
         this.duracion = duracion;
     }
 
@@ -26,7 +34,7 @@ public class Llamada implements Fecha, Serializable {
         return this.fecha;
     }
 
-    public LocalTime getHora(){ return this.hora;}
+    public int getHora(){ return this.fecha.getHour();}
 
     public double getDuracion(){
         return this.duracion;
