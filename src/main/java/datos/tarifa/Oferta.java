@@ -5,6 +5,7 @@ import datos.llamada.Llamada;
 import java.io.Serializable;
 
 public class Oferta implements Tarifa, Serializable {
+    // todo Mismo comentario que para TarifaBasica
     protected double coste;
     protected Tarifa tarifa;
 

@@ -12,9 +12,8 @@ import static junit.framework.TestCase.assertEquals;
 
 
 public class PatronesTest {
+
     ListadoClientes listaClientes = new ListadoClientes();
-
-
 
     @Test
     public void patronTarifaTest() {
